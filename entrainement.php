@@ -505,3 +505,64 @@ function bonjour($qui) {
 
 echo bonjour("Zitouni");  // Si la fonction reçoit un argument, il faut lui envoyer un argument
 echo bonjour("Juliette");
+
+$prenom = "Philippe";
+echo bonjour ($prenom);  // l'argument peut être une variable
+
+// --------------------
+
+// *** EXERCICE *** //
+
+// Créer une fonction appliqueTva() qui va ajouter la tva de 20% à un nombre passé en paramètre de la fonction
+
+
+
+function appliqueTva($prixHT){
+
+$prixTTC = $prixHT * (1 + (20/100));
+return $prixTTC;
+}
+echo appliqueTva(100);
+echo '<br>';
+
+// -------
+
+function appliqueTva2($prixHT, $taux = 1.2){
+    return $prixHT *$taux;
+}
+echo '20€ avec la tva à 20% donne:' . appliqueTva2(20). '€<br>';
+
+echo '35€ avec la tva à 5.5% donne:' . appliqueTva2(35, 1.055). '€<br>';
+
+echo '60€ avec la tva à 19.6% donne:' . appliqueTva2(60, 1.196). '€<br>';
+
+// --------------------------
+meteo('hiver', "2");  // il est possible d'exécuter une fonction avant qu'elle soit déclarée dans le code
+
+function meteo ($saison, $temperature) {
+    if ($temperature >1 ||$temperature <-1){
+    echo "nous sommes en $saison et il fait $temperature degrés";
+    }
+    else {
+    echo "nous sommes en $saison et il fait $temperature degré";
+    }
+    
+}
+
+// *** EXERCICE *** //
+
+// Gérer l'affichage du S de degrée avec un if/else
+
+exoMeteo("hiver", "-1");
+
+function exoMeteo($saison, $temperature) {
+    echo "Nous somme en $saison et il fait $temperature";
+    if ($temperature >1  OR $temperature <-1) {
+         echo "nous sommes en $saison et il fait $temperature degrés<br>";
+    }
+    else {
+    echo "nous sommes en $saison et il fait $temperature degré<br>";
+    }
+}
+
+
