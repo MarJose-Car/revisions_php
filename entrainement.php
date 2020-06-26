@@ -273,3 +273,235 @@ $c *= $d;      // équivaut à écrire $c = $c * $d;  => affiche 1250
 $c /= $d;      // équivaut à écrire $c = $c / $d;  => affiche 2
 
 $c %= $d;      // équivaut à écrire $c = $c % $d;  => affiche 0
+
+
+
+// ---------------------------------------
+echo '<hr><h2>Structures conditionnelles (IF/ELSE) - opérateurs de comparaison </h2>';
+// isset() & empty()
+// isset() determine si une variable est considérée comme défini ,ceci signifie qu'elle est déclarée et est différente de NULL.Retourne TRUE si var existe et a une valeur autre que NULL.Sinon elle retournera FALSE.
+// empty() determine  si une variable est considéréé comme vide.Elle est considérée comme vide si elle n'existe pas,ou si sa valeur équivaut à FALSE.
+$var1 = 0;
+$var2 = "";
+if(empty($var1)) echo '$var1 , vide ou non définie <br>';
+if(isset($var2)) echo 'La variable $var2 existe ,donc je peux l\'afficher,même si elle est vide <br>';
+// IF /ELSE IF / ELSE
+$a = 10; $b = 5; $c = 2;
+if($a > $b){  //Si 10 est superieur à 5 alors ...
+    print "A est bien supérieur à B <br>";  //(print) affiche une chaine de caractére.
+}                                           //Donc j'affiche mon print
+else{                                       // Sinon ..a(10)n'est pas supérieur à b(5).
+    print "A n'est pas supérieur à B <br>";
+                                        //Donc j'affiche mon print
+}
+//------------------
+if($a > $b && $b > $c){
+    echo "Mes deux conditions sont bonnes <br>";
+}
+if($a == 9 || $b > $c){ //les deux batons droit veulent dire "et"
+    print "Une  seule de nos conditions est valable <br>";   //a = 10 et nom 9
+}
+if($a == 8){
+    print "1. A est égal à 8 <br> ";
+}
+elseif($a != 10){
+    print "2. A est different de 10 <br>";
+}
+else{
+    print "3. Aucunes de mes conditions ne sont bonnes <br>";
+}
+//-----------------------------
+if($a == 10 XOR $b == 6){       //XOR:veut dire 'ou bien' seulement il prend une seule condition.
+    echo ' Mes deux conditions sont bien valides mais XOR n\'en attend q\'une à la fois pas les deux en même temps ($a est bien égal à 10 mais $b ne vaut que 6<br>)';
+}
+else{
+    print 'XOR n\'attend q\'une seule condition valable à la fois<br>';
+}
+//-----------
+//Opérateur logiques
+// && => AND => nécessite que les 2 conditions soient vraies pour que la valeur TRUE soit retournée ($a && $b)
+// || => OR => nécéssite que l'une des 2 conditions soit vraie pour que la valeur TRUE soit retournée 
+// ! (Different de)=> retourne la valeur inverse.
+// XOR (OU EXCLUSIF)=> nécessite que l'une des 2 conditions soit vraie pour que la valeur TRUE soit retournée,MAIS PAS LES DEUX EN MËME TEMPS.
+//Forme contractée : 2eme possibilité d'écriture des conditions
+echo ($a == 10) ? '$a est égal à 10<br>': '$a n\'est pas égal à 10<br>';
+//Ici le "?" remplace le IF et le ":" remplace le ELSE
+//  /!\ PHP 7 => entrer une valeur dans une variable sous une condition.
+$var1 = isset($maVar) ? $maVar : "Valeur_par_defaut";
+//Si $maVar existe,on affiche sa valeur à $maVar1, SINON on y affecte "Valeur _par_defaut" 
+echo $var1 . '<br>';      //Valeur _par_defaut
+$var2 = $maVar ?? "Valeur_par_defaut_2<br>";
+//La même chose en plus court avec les "??" .Soit l'un soit l'autre.
+echo $var2 . "<br>";   //valeur _par_defaut_2
+$var3 = $_GET["pays"] ?? $_GET["ville"] ?? "Pas d'informations";
+//Soit on récupere pays,soit ville,soit on affiche "pas d'informations"
+echo $var3 . "<br>";   //pas d'informations.
+//------
+//Comparaison
+$vara = 1;
+$varb = "1";
+if($vara == $varb){
+    echo "Il s'agit bien de la même chose<br>";
+}
+//  /!\ À mémoriser: pour le a majuscule il faut faite( altgr 7 et on fait le A )
+// = Affectation
+// == Comparaison des valeurs
+// === Comparaison des valeurs et des types 
+//-------------------------------------
+//  Opérateurs de comparaison
+//----------------------------------
+// >    :strictement superieur à 
+//----------------------------------
+// <    :stristement inferieur à 
+//--------------------------------
+// >=   :supérieur ou égal à
+//--------------------------------
+// <=   :inferieur ou égal à 
+//----------------------------
+// ==  : égal à (la valeur)
+//---------------------------
+// === :strictement égal à (la valeur et le type)
+//--------------------------------------------------
+// !=   :différent de la (valeur)
+//-----------------------------------
+//<>    :different de (la valeur)
+//--------------------------------
+// !==  : strictement different de (la valeur et le type).
+//-----------------------------------------------------------
+// $a <=> $b   :Combiné:Un entier inférieur ,égal ou supérieur à 0 lorsque $a est inférieur,égal ou supérieur à $b(disponible depuis PHP 7).
+
+// ---------------------------------------------------
+
+echo "<hr><h2> La condition switch</h2>";
+
+$monPays = "France";
+$mon2emePays = "Etats-Unis";
+
+switch($monPays) {
+    case 'Etats-Unis':
+        echo 'Vous êtes américain<br>';
+    break;
+    case 'Italie':
+        echo 'Vous êts italien<br>';
+    break;
+    case 'Espagne':
+        echo 'Vous êts espagnol<br>';
+    break;
+    case 'Japon':
+        echo 'Vous êtes japonais<br>';
+    break;
+    case 'Singapour':
+        echo 'vous êtes singapourien<br>';
+    break;
+    case 'Norvège':
+        echo 'vous êtes norvègien<br>';
+    break;
+    default: 
+        echo 'Vous n\'avez pas de nationalité connue dans notre liste de possibilité<br>';
+break;
+}
+
+// ----------------------------------
+// /!\ Attention : Soyez vigilant lorsque vous utilisez la condition if ou la condition if/elseis/else car il y a une réelle différence entre les deux
+
+$couleur = 'bleu';
+
+if($couleur == 'bleu') {
+    echo 'Votre couleur préférée est bien le bleu<br>';
+}
+if($couleur == 'orange') {
+    echo "Votre couleur préférée est bien l'orange<br>";
+}
+if($couleur == 'rose') {
+    echo "Votre couleur préférée est bien le rose<br>";
+}
+else {
+    echo "Nous n'arrivons pas à déterminer quelle et votre couleur préférée !<br>";
+}
+
+// si votre objectif est de prévoir qu'un seul cas possible pour vos conditions, vous devrez priviligier la structure if/elseif/else ou la structure switch
+
+// ----------------------------------------------
+
+echo "<hr><h2> Fonctions prédefinies</h2>";
+
+// date()
+echo 'Date : ' . date ('d-m-y H:i:s');
+// date() est une fonction qui permet de récupérer la date et l'heure local et de la formater
+
+// Le Y majuscule permet d'obtenir l'année en 4 chiffres (2019)
+// Le y en minuscule permet d'obtenir l'année en 2 chiffres (19)
+// Le H en majuscule permet d'obtenir l'heure au format 24h
+// Le H en minuscule permet d'obtenir l'heure au format 12h
+
+// En savoir plus : https://www.php.net/manual/fr/function.date
+
+echo '<br>';
+
+// --------------------------------------------
+
+echo "<hr><h2> Fonctions prédefinies: traitement des chaines de caractères (iconc-strlen, strpos, substr</h2>";
+
+$email = "kevin@lepoles.com";
+
+echo 'L\'@ se trouve à la position n°'. strpos($email, '@');
+// L'@ se trouve à la position n°5 
+
+// strpos() est une fonction qui indique la position (sous un tableau index commençant par ZÉRO) d'un caractère dans une chaine de caractère
+// Elle attend 2 arguments :
+    // La chaine de caractères -> ici $email ("kevin@lepoles.com";)
+    // L'information à chercher dans la chaine de caractères -> @
+
+    $email2 = 'Bonjour';
+    echo strpos($email2, '@');  // Cette ligne ne ressort rie car par de @ -> FALSE
+    echo '<br>';
+
+    // var_dump() - Affiche les informations d'une variable (y compris son type et sa valeur), très utile pour débugger en phase de développement.
+    var_dump(strpos($email2, '@'));   // boolean (false)
+    echo '<br>';
+
+    // ------------------
+    $phrase = "Mettez une phrase ici à cet endroit";
+
+    echo iconv_strlen($phrase). '<br>'; // 35
+
+    /*
+        iconv_strlen() est une fonction prédefinie permettant de retourner le nombre de caractères d'une chaine de caractères:
+            Succès -> INTEGER (chiffre)
+            Echec -> Boolean (False)
+            Argument -> La chaine de caractères dans laquelle on souhaite connaitre la taille
+    */
+
+// ---------------------
+$texte = 'lorem ipsum dolor sit met consectetur adipisicing elit. Amet harum rem, dicta in aliquid, sint fuga hic aperiam, est iure dolorum? Dolore vero ex, iure expedita enim itaque voluptas quidem!';
+
+echo substr($texte, 0, 20). "...<a href=''>Lire la suite</a><br>";
+
+/*
+    substr() est une fonction prédéfinie permettant de retourner une partie (un segment) de la chaine de caractères
+        Succès -> STRING (Texte)
+        Echec -> Boolean (False)
+        Arguments:
+            1. indiquer la chaine que l'on souhaite "couper"
+            2. préciser la position de début
+            3. préciser la position de fin
+*/
+
+// -----------------------------------
+echo "<hr><h2> Fonctions utilisateurs</h2>";
+
+// sans argument
+
+function separation() {  // Déclaration d'une fonction prévu pour ne pas recevoir d'arguments
+    echo '<hr><hr><hr>'; // doit afficher 3 <hr> dans la page
+}
+separation();  // exctution de la fonction
+
+// Avec argument(s)
+
+function bonjour($qui) {
+    return "Bonjour $qui <br>\n"; // "\n" m'affectuer une nouvelle la ligne
+}
+
+echo bonjour("Zitouni");  // Si la fonction reçoit un argument, il faut lui envoyer un argument
+echo bonjour("Juliette");
