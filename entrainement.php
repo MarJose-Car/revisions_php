@@ -258,4 +258,18 @@ $num4 = "30";
 
 echo $num3 + $num4;
 echo '<br';
-echo "Le type d'une opération entre un INTEGER et un STRING est :". gettype($num3 + $num4);   // Integer
+echo "Le type d'une opération entre un INTEGER et un STRING est :". gettype($num3 + $num4);   
+
+// Opérateurs d'affectation
+
+$c = 50; $d = 25;
+
+$c += $d      // équivaut à écrire $c = $c + $d;  => affiche 75
+
+$c -= $d      // équivaut à écrire $c = $c - $d;  => affiche 25
+
+$c *= $d      // équivaut à écrire $c = $c * $d;  => affiche 1250
+
+$c /= $d      // équivaut à écrire $c = $c / $d;  => affiche 2
+
+$c %= $d      // équivaut à écrire $c = $c % $d;  => affiche 0
