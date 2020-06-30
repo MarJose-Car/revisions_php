@@ -565,4 +565,97 @@ function exoMeteo($saison, $temperature) {
     }
 }
 
+// ------------------
+// LA PORTÉE DES VARIABLES
+
+function jourSemaine()  {
+    $jour = "mardi";  // variable
+    return $jour;     // la fonction retourne bien quelque chose (à ce moment la ce qui suit n'est pas exécuté, on quitte la fonction)
+
+    echo 'Teste';     // Cetteligne ne sera pas éxécutée à cause du return juste au dessus
+}
+
+// echo $jour;            // Ne fonctionnnera pas car cette variable n'est connu qu'à l'intérieur de la fonction
+
+$recup = jourSemaine();   // Ici je récupère le resultat de ma fonction jourSemaine() en l'affectant à une variable
+
+echo $recup . '<br>';  // affiche mardi
+
+
+// -----------
+$pays = "Chine";
+
+function affichePays() {
+
+    global $pays;    // le echo qui suit ne fonctionnerait pas si nous n'avions pas mit le mot-clé 'global' pour importer tout ce qui est déclaré de l'espace global (global scope) dans l'espace local (local scope)
+    echo $pays;
+}
+affichePays();
+
+function facultatif() {   // fonctions avec des arguments facultatifs
+
+    print '<pre>'; print_r(func_get_args()); "</pre>";
+
+    // func_get_args() permet d'obtenir un tableau array avec les arguments passés
+    foreach(func_get_args() as $indice => $element) {
+        echo $indice,'->', $element, '<br>';  
+    }
+
+}
+facultatif();
+facultatif('chien', 'jaguar', 'chauve-souris', 2);
+facultatif('Tesla');
+
+// ---------------
+// /!\ PHP 7 - On précise en amont la valeur de retour que doit retourner la fonction
+
+function isAdult(int $age) : bool {
+    return $age >= 18;
+}
+var_dump(isAdult(9));   // boolean (false)
+
+// ---------------------------------
+
+echo "<hr> <h2> Structure itérative : Boucle </h2>";
+
+// Contexte -> Quand il y a une multitude de produits à afficher sur une page catalogue produit dans un site 'e-commerce, on va utiliser une boucle qui va repéter l'affichage de chaque produit dans notre catalogue
+
+// La boucle while()
+$i = 0;
+
+while($i <3) {    // Tant que $i est inférieur à 3
+    echo "$i-----";
+    $i++;         // opérateur d'incrementation qui équivaut à écrire $i = $i+1;
+                  // L'incrémentation du compteur est affetée à chaque tour de boucle
+}
+                  // Affiche 0-----1-----2-----
+echo '<br>';
+
+// *** EXERCICE **** //
+
+// Faire en sorte de ne pas avoir les tirets après '2' comme ceci: 0-----1-----2
+ 
+$j = 0;
+while($j <3) {
+    
+    if($j == 2) {
+        echo $j;
+    }
+    else {
+        echo "$j-----";
+    }
+    $j++;
+}
+// Affiche : 0-----1-----2
+
+echo '<br>';
+
+// -----------
+// La Boucle FOR()
+
+for($i = 0; $i <=16; $i++) {    // Initialisation de la valeur de départ; notre condition; et l'incrémentation (ou décrémentation);
+
+    print $i . "<br>";
+}
+echo '<br>';
 
